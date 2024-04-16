@@ -1,0 +1,43 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid mt-5 mb-5 p-5">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-2 pt-3">
+      <img src="{% static 'assets\logo-cadastro.svg' %}" class="img-fluid" alt="logo caneca tech">
+      <p class='h3 font-titulos text-center p-3'>Bem-vinde!</p>
+    </div>
+    <div class="col-md-auto ps-5">
+      <form action="{% url 'login' %}" method="POST" id="form">
+        {% csrf_token %}
+
+        <!-- Campo para email -->
+        <div class="mb-3">
+          <label for="exampleInputUsername" class="form-label font-titulos">Nome de usuário</label>
+          <input type="text" class="form-control" id="exampleInputUsername" name="username">          
+        </div>
+        <!-- Campo para senha -->
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label font-titulos">Senha</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+        </div>
+        <!-- Botão de envio -->
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <button class="botao-entrar font-titulos" type="submit">Login</button>
+        </div>
+      </form>
+
+      {% if form.errors %}
+      <div class="alert alert-danger" role="alert">
+        Usuário ou senha incorretos. Por favor, tente novamente.
+      </div>
+      {% endif %}
+
+      <a href="{% url 'cadastro' %}">Ainda não é cadastrado?</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

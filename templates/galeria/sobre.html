@@ -1,0 +1,53 @@
+{% extends "galeria/base.html" %}
+{% load static %}
+{% block title %}Sobre{% endblock %}
+
+{% block content %}
+    <!-- banner da Ada by WoMakersCode -->
+    <div class="">
+        <img src="{% static 'assets/banner1.png' %}" style="width: 100%;" class="pt-5">
+    </div>
+    <!-- Sobre a WoMakersCode e o Bootcamp -->
+    <div class="container-fluid">
+        <p class="h2 font-titulos pt-5 ps-3">Como surgiu este projeto?</p>
+        <p class="fs-5 ps-3">Este projeto surgiu no Bootcamp de Python e Django realizado pela <a href="https://womakerscode.org/" target="_blank">WoMakersCode</a>.</p>
+    </div> 
+    <!-- Requisitos do Projeto -->
+<div class="container-fluid">
+    <h2 class="font-titulos pt-5 ps-3">Requisitos do Projeto</h2>
+    <div class="fs-5 ps-3">
+        <p><strong>Ambiente de Desenvolvimento:</strong> Configuração de um ambiente virtual Django local.</p>
+        <p><strong>Controle de Versão com Git:</strong> Utilização do GitHub para controle de versão e registro claro de alterações.</p>
+        <p><strong>Design Responsivo:</strong> Desenvolvimento de um design responsivo usando HTML5, CSS3 e Bootstrap.</p>
+        <p><strong>Banco de Dados:</strong> Configuração de um banco de dados SQLite ou PostgreSQL para armazenamento das informações.</p>
+        <p><strong>Modelos Django:</strong> Definição de modelos Django para representar as postagens do blog.</p>
+    </div>
+</div>
+<!-- Funcionalidades do Blog -->
+<div class="container-fluid">
+    <h2 class="font-titulos pt-5 ps-3">Funcionalidades do Blog</h2>
+    <div class="fs-5 ps-3">
+        <p><strong>Página Inicial:</strong> Exibição de todas as postagens em ordem cronológica.</p>
+        <p><strong>Páginas de Detalhes:</strong> Visualização individual das postagens.</p>
+        <p><strong>Gerenciamento de Postagens:</strong> Capacidade de editar e excluir postagens.</p>
+        <p><strong>Barra de Pesquisa:</strong> Busca por palavras-chave para facilitar a navegação.</p>
+    </div>
+</div>
+    <!-- Caneca Tech logo e texto explicativo -->
+    <div class="container-fluid mt-3 p-4">
+        <div class="row">
+            <div class="col-md-6 p-5">
+                <img src="{% static 'assets/caneca2.png' %}" class="img-fluid" style="width: 100%;" alt="...">
+            </div>
+            <div class="col-md-5 p-5">
+                <div class="row">
+                    <p class="h3 font-titulos-destaque">Caneca?</p>
+                </div>
+                <div class="row">
+                    <p class="fs-4 text-md-start">O conceito de caneca abrange não apenas o ato de tomar café, inclui todo mundo desde quem bebe chá até aqueles que preferem cerveja.</p>
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+{% endblock %}

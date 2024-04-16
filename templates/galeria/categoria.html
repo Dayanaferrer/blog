@@ -1,0 +1,44 @@
+{% extends 'galeria/base.html'%}
+{% load static %}
+{% block title %}Postagem da categoria 1{% endblock %}
+
+
+<!-- PROBLEMA: na página da categoria deve ficar ativada a tab da categoria-->
+{% block nav %} {% include 'galeria\partials\_navcategorias.html' %} {% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div>
+        <p class="h2 font-titulos mt-4 ms-4">Todas as postagens sobre <span class="link-primary">{{ categoria_obj }}</span></p>
+        </div>
+
+        {% for postagem in categoria_postagens %}
+        <div class="container-fluid">      
+          <div class="mb-3 p-3" style="max-height: auto">
+              <div class="row g-0">
+                <div class="col-md-3">
+                  
+                  <img src="{% static '\assets\img-2.png' %}" class="img-fluid rounded" alt="imagem do post">
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body ps-4">
+                    <div class="mb-2">
+                     
+                      <span class="badge text-bg-light text-secondary">{{ postagem.dt_criacao }}</span>
+                    </div>
+                    
+                    <h5 class="card-title font-titulos-destaque">{{ postagem.titulo }}</h5>
+                    <p class="card-text pt-3 ">{{ postagem.descricao }}</p>
+                    <a href="{% url 'postagem_detalhada' pk=postagem.pk %}" class="btn btn-outline-primary font-titulos mt-3">Confira na íntegra</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}  
+          </div>
+          <br>
+  
+    </div>
+    
+
+{% endblock %}

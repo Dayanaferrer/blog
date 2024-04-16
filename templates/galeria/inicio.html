@@ -1,0 +1,69 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block nav %} {% include 'galeria\partials\_navcategorias.html' %} {% endblock %}
+
+{% block content %}
+  <main>
+    <div class="container-fluid pt-5">
+      <!-- postagem de destaque PERMANECE?
+      <div class="container-fluid p-4 mt-4">
+        <div class="">
+          <div class="card-body pb-3">
+            <p class="card-title h1 font-titulos-destaque">Este é o título da postagem</p>
+            <div class="mt-2 mb-2">
+              <small class="text-bg-light font-titulos text-secondary">07 de março, 2024</small>
+              <small class="text-bg-light font-titulos text-primary ms-3">Tag 1</small>
+              <small class="text-bg-light font-titulos text-primary ms-3">Tag 1</small>
+            </div>
+            <p class="card-text fs-5 pt-2 pb-2">Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <button type="button" class="btn btn-outline-primary">Confira na íntegra >></button>
+          </div>
+        </div>
+      </div>
+       -->
+      <!-- Postagens -->    
+      <div class="container-fluid ps-4"> 
+        {% for postagem in postagens %}       
+        <div class="p-3 mb-3">
+          <div class="row g-0">
+            {% if postagem.imagem %}
+             <div class="container-fluid ps-4">
+                <img src="{{postagem.imagem.url}}" class="img-fluid" alt="Imagem da postagem">
+             </div>
+            {% endif %}
+            <div class="col-md-8">
+              <div class="card-body ms-2">
+                <h5 class="card-title font-titulos h1">{{ postagem.titulo }}</h5>
+                <div class="mt-2 mb-2">
+                    <small class="text-bg-light font-titulos text-secondary">{{ postagem.dt_criacao }}</small>
+                    <small class="text-bg-light font-titulos text-primary ms-3">{{ postagem.categoria }}</small>
+                </div>
+                <p class="card-text fs-5 pt-3">{{ postagem.descricao }}</p>
+                  <div class="">
+                      <a href="{% url 'postagem_detalhada' pk=postagem.pk %}" class="btn btn-outline-primary">Confira na íntegra</a>
+                  </div> 
+                </div>
+              </div>
+            </div>    
+          </div>
+        </div>
+        <hr>
+       {% endfor %}
+      </div>
+      <!-- Paginação AINDA PRECISA RESOLVER ISSO -->
+      <div class="container-fluid ms-2">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </main>
+{% endblock %}

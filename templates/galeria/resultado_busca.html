@@ -1,0 +1,30 @@
+{% extends 'galeria/base.html'%}
+{% load static %}
+{% block title %}Resultado da busca{% endblock %}
+
+
+<!-- PROBLEMA: na página da categoria deve ficar ativada a tab da categoria-->
+{% block nav %}{% include 'galeria\partials\_navcategorias.html' %}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="container-fluid pb-3">
+        {% if searched %}
+            <p class="h2 font-titulos mt-4">Todos os resultados para <span class="link-primary">"{{ searched }}"</span></p>
+            {% for postagem in postagens %}
+                <div class="container-fluid">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                        <h3 class="card-title font-titulos">{{ postagem.titulo }}</h3>
+                        <p class="card-text">{{ postagem.descricao }}</p>
+                        <a href="{% url 'postagem_detalhada' pk=postagem.pk %}" class="card-link">Confira na íntegra >></a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="h2 font-titulos mt-4">Algo de errado não está certo!</span></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

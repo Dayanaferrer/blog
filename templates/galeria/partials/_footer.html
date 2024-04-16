@@ -1,0 +1,65 @@
+{% load static %}
+
+<footer class="rodape" id="rodape">
+    <img src="{% static 'assets/logo.png' %}" alt="Logo" class="logo-rodape">
+    <div class="container-links-rodape">
+        <div class="links-rodape">
+            <input type="checkbox" id="toggle1">
+            <label for="toggle1" class="toggle_botao font-titulos">CATEGORIAS
+                <i class="bi bi-chevron-down"></i>
+            </label>
+            <!-- Inserir conexão com bd -->
+            <ul>
+                {% for categoria in categorias %}
+                <li><a href="#" class="font-titulos">{{ categoria.titulo }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="links-rodape">
+            <input type="checkbox" id="toggle2">
+            <label for="toggle2" class="toggle_botao font-titulos">NOSSAS REDES
+                <i class="bi bi-chevron-down"></i>
+            </label>
+            <ul>
+                <li><a href="#" class="font-titulos">Instagram</a></li>
+                <li><a href="#" class="font-titulos">Discord</a></li>
+                <li><a href="#" class="font-titulos">YouTube</a></li>
+                <li><a href="#" class="font-titulos">Github</a></li>
+            </ul>
+        </div>
+        <div class="links-rodape">
+            <input type="checkbox" id="toggle3">
+            <label for="toggle3" class="toggle_botao font-titulos">CONTATOS
+                <i class="bi bi-chevron-down"></i>
+            </label>
+            <ul>
+                <li><a href="#" class="font-titulos">Email</a></li>
+                <li><a href="#" class="font-titulos">Whatsapp</a></li>
+            </ul>
+        </div>
+        <div class="links-rodape">
+            <input type="checkbox" id="toggle4">
+            <label for="toggle4" class="toggle_botao font-titulos">ACESSE
+                <i class="bi bi-chevron-down"></i>
+            </label>
+            <ul>
+                <li><a href="{% url 'login' %}" class="font-titulos">Login</a></li>
+                <li><a href="{% url 'cadastro' %}" class="font-titulos">Cadastro</a></li>
+            </ul>
+        </div>
+        <div class="links-rodape">
+            <input type="checkbox" id="toggle">
+            <label for="toggle"><a href="{% url 'sobre' %}" class="font-titulos">SOBRE</a></label>
+        </div>
+        <!-- <div class="links-rodape">
+            <input type="checkbox" id="toggle" style="display: none;">
+            <label for="toggle" class="font-titulos">DÚVIDAS</label>
+        </div> -->
+    </div>
+    <div class="rodape_autoria">
+        <hr>        
+        <p>Alguns direitos reservados | Desenvolvido pelas Squads Rita Levi & Sarah Gilbert 2024 | Bootcamp
+            <a href="https://www.womakerscode.org/" target="_blank">WomakersCode</a>
+        </p>
+    </div>
+</footer>

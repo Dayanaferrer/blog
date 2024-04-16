@@ -1,0 +1,16 @@
+{% load static %}
+
+<br>
+
+<nav class="nav-categoria">
+    <ul class="categorias flex-container">
+        <li class="nav-item">
+            <a class="font-titulos link-ativo" aria-current="page" href="{% url 'inicio' %}">TUDO</a>
+        </li>
+        {% for categoria in categorias %}
+        <li class="nav-item categoria-item">
+            <a class="font-titulos" href="{% url 'categoria' categoria.titulo %}">{{ categoria.titulo }}</a>
+        </li>
+        {% endfor %}        
+    </ul>
+</nav>

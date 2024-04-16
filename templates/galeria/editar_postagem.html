@@ -1,0 +1,107 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Área do Usuário - Suas Postagens{% endblock %}
+
+{% block login %}
+<div class="cabecalho_usuario">
+    <a href="#" class="font-titulos media-desktop">Olá, {{ usuario.nome }}!</a>
+    <a href="#" class="nav-link font-titulos media-mobile">OLÁ, {{ usuario.nome }}! </a>
+    <div class="logo_usuario"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<main id="suas_postagens">
+    <div class="titulo_suas_postagens">
+        <span class="font-titulos-destaque">Editar Post</span>
+
+    </div>
+    <p class="retornar_link">
+        << Voltar para Painel do usuário</p>
+
+            <form action="{% url 'editar_postagem' postagem.pk %}" enctype="multipart/form-data" class="formulario_criacao_post" method="post">
+                {% csrf_token %}
+                
+                <div class="mb-3 full-width-input">
+                    <label for="titulo_postagem_usuario" class="label_criacao_post">TÍTULO DA POSTAGEM</label>
+                    <input type="text" name="titulo" class="form-control barra_criacao_post" id="titulo_postagem_usuario" value="{{ postagem.titulo }}">
+                </div>
+                <div class="grid-container">
+
+                    <div class="grid-item left-column">
+
+                        <div class="grid-item-content">
+                            <label for="tags_postagem_usuario" class="label_criacao_post">ATRIBUIR TAGS</label>
+                        </div>
+
+                        <div class="grid-item-content">
+
+                            <div class="input-group" style="font-family: 'Share Tech Mono', monospace;">
+                               
+                                <select name="categoria" class="form-select barra_criacao_post" id="tags_postagem_usuario" aria-label="Example select with button addon" >
+                                    <option value="" selected disabled>Escolher tags</option>
+                                    {% for categoria in categorias %}  
+                                         <option value="{{ categoria.id }}" {% if categoria.id == postagem.categoria.id %} selected {% endif %}>{{ categoria.titulo }}</option>
+                                    {% endfor %}
+                                </select>                        
+                                    
+                               <!--<button class="btn btn-outline-success-alteracao" type="button">INSERIR</button>--> 
+                            </div>
+
+                        </div>
+
+
+                        <div class="grid-item-content">
+                            <label for="anexar_midia" class="label_criacao_post">ANEXAR MÍDIA</label>
+                        </div>
+
+                    </div>
+
+                    <!--<div class="grid-item right-column">
+                        <div class="mb-3 box_tag_post">
+                            <div>
+                                <span class="tag_post">tag1</span>
+                                <i class="bi bi-x-square" style="color: rgba(244, 82, 82, 1);"></i>
+                            </div>
+                            <div>
+                                <span class="tag_post">tag1</span>
+                                <i class="bi bi-x-square" style="color: rgba(244, 82, 82, 1);"></i>
+                            </div>
+                            <div>
+                                <span class="tag_post">tag1</span>
+                                <i class="bi bi-x-square" style="color: rgba(244, 82, 82, 1);"></i>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                
+                <div class="mb-3 full-width-input">
+                    <div class="input-group" style="font-family: 'Share Tech Mono', monospace;">
+                        <input type="file" name="imagem" class="form-control barra_criacao_post" id="anexar_midia"
+                            aria-describedby="inputGroupFileAddon04" aria-label="Procurar" value="{{ postagem.imagem }}">
+                        <button class="btn btn-outline-success-alteracao" type="button"
+                            id="anexar_midia">UPLOAD</button>
+                    </div>
+                </div>
+
+                <div class="mb-3 full-width-input">
+                    <label for="corpo_descricao_usuario" class="label_criacao_post">DESCRICAO</label>
+                    <input name="descricao" type="text" class="form-control barra_criacao_post corpo_post_descricao" id="corpo_descricao_usuario" row="30" value="{{ postagem.descricao }}">
+                </div>
+
+                <div class="mb-3 full-width-input">
+                    <label for="corpo_postagem_usuario" class="label_criacao_post">CORPO DA POSTAGEM</label>
+                    <input name="texto" type="text" class="form-control barra_criacao_post corpo_post" id="corpo_postagem_usuario" value="{{ postagem.texto }}">
+                </div>
+
+                <div>
+                    <button class="botao-criar-post" type="submit" value="Submit">
+                        <i class="bi bi-plus-lg"></i> ATUALIZAR</button>
+                </div>
+                
+            
+            </form>
+</main>
+
+{% endblock %}

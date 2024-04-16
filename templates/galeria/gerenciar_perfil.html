@@ -1,0 +1,48 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Gerenciar Perfil{% endblock %}
+
+{% block content %}
+
+    <div class="container-fluid p-5">
+        <div class="pb-5">
+            <p class="h3 font-titulos">Gerenciar Perfil</p>
+        </div>
+        <div class="row">
+            <!-- mostrar informações cadastradas do usuário -->
+            <div class="col-md-4">
+                <p class="pt-5 h4 font-titulos">Nome: <span class="text-primary">{{ usuario.username }}</span></p>
+                <p class="pt-3 h4 font-titulos">E-mail: <span class="text-primary">{{ usuario.email }}</span></p>
+            </div>
+            <!-- formulário de atualização do perfil -->
+            <div class="col-md-4">
+                <form action="" method="POST" id="form">
+                    {% csrf_token %}
+                    <!-- Para nome -->
+                    <div class="pb-2">
+                        <label for="validationCustom01" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="validationCustom01" value="{{ usuario.username }}" required>
+                        <div class="valid-feedback">
+                          tudo certo!
+                        </div>
+                    </div>   
+                    <!-- para email -->
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="exemplo@email.com" value="{{ usuario.email }}" name="email">
+                      </div>
+                      <!-- para senha -->
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Senha</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" style="width: 15rem;">
+                      </div>
+                      <!-- botão alterar -->
+                      <div class="d-grid gap-2 d-md-flex justify-content-md-start pt-3">
+                        <button class="btn btn-primary" type="submit">Alterar cadastro</button>
+                      </div>
+                </form>
+            </div>
+          </div>
+    </div>
+
+{% endblock %}

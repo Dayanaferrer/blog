@@ -1,0 +1,50 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Área do Usuário - Suas Postagens{% endblock %}
+
+{% block login %}
+<div class="cabecalho_usuario">
+    <a href="#" class="font-titulos media-desktop">Olá, Usuário<!-- {{ usuario.nome }}-->!</a>
+    <a href="#" class="nav-link font-titulos media-mobile">OLÁ, USUÁRIO<!-- {{ usuario.nome }}-->! </a>
+    <div class="logo_usuario"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<main id="suas_postagens">
+    <div class="titulo_suas_postagens">
+        <span class="font-titulos-destaque">Suas Postagens</span>        
+        <button class="botao-criar-post">
+            <i class="bi bi-plus-lg"></i> Criar Novo Post</button>
+    </div>
+    <p class="retornar_link"><< Voltar para Painel do usuário</p>
+
+    <div class="subtitulo_suas_postagens">
+        <p>Publicados</p>
+    </div>
+
+    <div class="pesquisa_suas_postagens">
+        <div class="checkbox_selecao">
+            <input type="checkbox" id="selecionar_todos">
+            <label for="selecionar_todos" class="botao-checkbox"><i class="bi bi-check2"></i></label>
+            <p>Selecionar Todos</p>
+        </div>
+        <div>
+            <form class="d-flex" role="search">
+                <div class="input-group">
+                    <input class="form-control barra_pesquisa font-titulos" type="search" placeholder="Buscar postagem"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success-ctech font-titulos me-4" type="butt">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <section class="zero_postagens">
+        
+    </section>
+
+    {% endblock %}

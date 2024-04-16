@@ -1,0 +1,89 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Área do Usuário - Suas Postagens{% endblock %}
+
+{% block login %}
+<div class="cabecalho_usuario">
+    <a href="{% url 'paineldousuario' %}" class="font-titulos media-desktop">Olá,  {{ usuario.nome }}!</a>
+    <a href="{% url 'paineldousuario' %}" class="nav-link font-titulos media-mobile">OLÁ, {{ usuario.nome }}! </a>
+    <div class="logo_usuario"></div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<main id="suas_postagens">
+    <div class="titulo_suas_postagens">
+        <span class="font-titulos-destaque">Suas Postagens</span>
+        <a href="{% url 'criar_postagem' %}">       
+        <button class="botao-criar-post">
+            <i class="bi bi-plus-lg"></i> Criar Novo Post</button> </a> 
+    </div>
+    <p class="retornar_link"><< Voltar para Painel do usuário</p>
+
+    <div class="subtitulo_suas_postagens">
+        <p>Publicados</p>
+    </div>
+
+    <div class="pesquisa_suas_postagens">
+        <div class="checkbox_selecao">
+         <!--   <input type="checkbox" id="selecionar_todos">
+            <label for="selecionar_todos" class="botao-checkbox"><i class="bi bi-check2"></i></label>
+            <p>Selecionar Todos</p>  -->
+        </div>
+        <div>
+            <!--
+            <form class="d-flex" role="search">
+                <div class="input-group">
+                    <input class="form-control barra_pesquisa font-titulos" type="search" placeholder="Buscar postagem"
+                        aria-label="Search">
+                    <button class="btn btn-outline-success-ctech font-titulos me-4" type="butt">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+            </form>
+            -->
+        </div>
+    </div>
+
+    <section class="postagens_usuario">
+        {% for postagem in postagens_usuario %}
+        <div class="sua_postagem">
+            <div class="selecionar_post">
+                <input type="checkbox" id="selecionar_post">
+                <label for="selecionar_post" class="checkbox_post"><i class="bi bi-check2"></i></label>
+            </div>
+            <div class="imagem_post">
+                <img src="{{ postagem.imagem.url }}" class="img-fluid" alt="{{ postagem.titulo }}">
+            </div>
+            <div class="conteudo_post">
+                <div class="data_tag">
+                    <p class="data_post">{{ postagem.dt_criacao|date:"d F, Y" }}</p>
+                    <!-- Exibir tags aqui, se houver -->
+                </div>
+                <div class="conteudo_principal">
+                    <p class="font-titulos-destaque2">{{ postagem.titulo }}</p>
+                    <p class="parcial_post">{{ postagem.descricao }}</p>
+                    <a href="{% url 'postagem_detalhada' pk=postagem.pk %}" class="post_completo_link">VER POSTAGEM >></a>
+                </div>
+            </div>
+            <div class="edicao_post">
+                <button class="btn-editar" type="button">
+                    <a href="{% url 'editar_postagem' pk=postagem.pk %}">
+                        <i class="bi bi-pencil-square custom-icon-color"></i>
+                    </a>
+                </button>
+                <form action="{% url 'excluir_postagem' pk=postagem.pk %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button class="btn-excluir" type="submit" onclick="return confirm('Tem certeza que deseja excluir esta postagem?');">
+                        <i class="bi bi-trash3 custom-icon-color"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </section>    
+
+</main>
+
+{% endblock %}

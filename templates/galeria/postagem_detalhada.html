@@ -1,0 +1,108 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Postagem detalhada{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <!-- Postagem -->
+        <div class="row">
+            <div class="col-md-9">
+                <!-- título da postagem -->
+                <div class="container-fluid pt-5 ps-4">
+                    <p class="h1 font-titulos">{{ postagem.titulo }}</p>
+                    <p class="h5 card-subtitle">{{ postagem.subtitulo }}</p>
+                </div>
+                <!-- informações da postagem -->
+                <div class="container-fluid ps-4 pb-3">
+                    <small class="text-secondary">Data de criação: {{ postagem.dt_criacao }}</small>
+                    <small class="text-bg-light font-titulos text-primary ms-3">{{ postagem.categoria }}</small>
+                </div>
+                <!-- imagem da postagem -->
+                {% if postagem.imagem %}
+                    <div class="container-fluid ps-4">
+                        <img src="{{ postagem.imagem.url }}" class="img-fluid" alt="Imagem da postagem">
+                    </div>
+                {% endif %}
+                {% if postagem.descricao %}
+                     <div class="container pt-3 ps-4">
+                         <p>{{ postagem.descricao }}</p>
+                     </div>
+                {% endif %}
+                <!-- Texto da postagem -->
+                <div class="container-fluid pt-3 ps-4">
+                    <p>{{ postagem.texto }}</p>
+                </div>
+                <!-- Card de apresentação da autora -->
+                <div class="container-fluid pt-4 ps-4 pb-3">
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                          <div class="col-md-8">
+                            <div class="card-body">
+                              <h5 class="card-title font-titulos">{{ postagem.usuario }}</h5>
+                              <p class="">Quer saber quem está por trás desta publicação?? <br>
+                                Confira o nome da autora acima..</p>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Comentários -->
+        <div class="container-fluid ps-4 pt-4 pb-5">
+            <div class="row">
+                <div class="col-md-6 col-md-3">
+                    <p class="h3 font-titulos">Escreva um comentário</p>
+                    <!-- Formulário de comentários -->
+                    <form action="{% url 'postagem_detalhada' pk=postagem.pk %}" method="POST" id="form">
+                        {% csrf_token %}
+                        <div class="mb-3 mt-3">
+                            <textarea class="form-control" name="comentario" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <input type="hidden" name="autor" value="{{ request.user.username }}">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
+                            <button class="btn btn-primary" type="submit" name="comentar">Comentar</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Mostrar comentários -->
+                <div class="col-md-6 col-md-3">
+                    <div class="container-fluid">
+                        {% if user.is_authenticated %}
+                            {% if comentarios %}
+                                {% for comentario in comentarios %}
+                                    <div class="container-fluid pt-2 pb-4">
+                                        <!-- Comentário autor -->
+                                        <span class="h4 font-titulos">{{ comentario.autor }}</span>
+                                        <!-- Comentário data -->
+                                        <span class="text-secondary ps-4">{{ comentario.dt_criacao }}</span>
+                                    </div>
+                                    <!-- Conteúdo do comentário -->
+                                    <div class="container-fluid">
+                                        <p class="text-bg-light p-2">{{ comentario.comentario }}</p>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <p>Ainda não há comentários para esta postagem.</p>
+                            {% endif %}
+                        {% else %}
+                            <p>Faça <a href="{% url 'login' %}">login</a> ou <a href="{% url 'cadastro' %}">cadastre-se</a> para comentar.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Paginação -->
+                <div class="container-fluid">
+                    <nav aria-label="...">
+                        <ul class="pagination pagination-sm justify-content-end">
+                            {% for num in comentarios.paginator.page_range %}
+                                <li class="page-item {% if comentarios.number == num %}active{% endif %}">
+                                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </nav>                 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

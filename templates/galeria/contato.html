@@ -1,0 +1,26 @@
+{% extends 'galeria/base.html' %}
+{% load static %}
+{% block title %}Contato{% endblock %}
+
+{% block content %}
+<div class="container-fluid ps-4 pt-5">
+  <p class="h2 font-titulos">Contate a nossa squad</p>
+</div>
+
+<div class="fb-contato-container">
+  {% for squad in squads %}
+  
+  <div class="fb-contato-item">
+    <h5 class="font-titulos">{{ squad.nome }}</h5>
+    <img src="{{ squad.imagem.url }}" class="imagem-contato" alt="imagem de membro {{ squad.nome }} da squad">
+    <p class="contato-descricao">{{ squad.descricao }}</p>
+    <div class="contato-links">
+      <a href="{{ squad.github }}" target="_blank"><i class="bi bi-github"></i> GitHub</a>
+      <a href="{{ squad.linkedin }}" target="_blank"><i class="bi bi-linkedin"></i> Linkedin</a>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>
+
+{% endblock %}
