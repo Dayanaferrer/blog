@@ -3,10 +3,9 @@ from post.models import Post
 from inicio.models import Squad
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
-
 def inicio(request):
     todas_postagens = Post.objects.order_by('-dt_criacao')
-    paginator = Paginator(todas_postagens, 2)  
+    paginator = Paginator(todas_postagens, 4)  
     numero_pagina = request.GET.get('pagina')
     try:
         postagens = paginator.page(numero_pagina)

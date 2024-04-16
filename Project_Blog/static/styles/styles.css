@@ -452,7 +452,9 @@ input[type="checkbox"]:checked+.checkbox_post {
 }
 
 .imagem_post {
-  max-width: 270px;
+  max-width: 500px;
+   /* Mantém a proporção da imagem */
+  
 }
 
 .conteudo_post {
@@ -774,6 +776,8 @@ input[type="checkbox"]:checked+.checkbox_post {
   max-height: 100px; /* Altura máxima desejada */
   overflow-y: auto;
 }
+
+
 
 @media screen and (max-width: 576px) {
   .formulario_criacao_post {

@@ -14,7 +14,7 @@
           <div class="row g-0">
             {% if postagem.imagem %}
              <div class="container-fluid ps-4">
-                <img src="{{postagem.imagem.url}}" class="img-fluid" alt="Imagem da postagem">
+                <img src="{{postagem.imagem.url}}" class="img-fluid imagem_post" alt="Imagem da postagem">
              </div>
             {% endif %}
             <div class="col-md-8">
@@ -36,7 +36,7 @@
         <hr>
        {% endfor %}
       </div>
-      <!-- Paginação AINDA PRECISA RESOLVER ISSO -->
+      <!-- Paginação-->
       <div class="container-fluid ms-2">
         <nav aria-label="Page navigation example">
           <ul class="pagination">
