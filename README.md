@@ -37,7 +37,7 @@ Essas melhorias visam tornar o Caneca Tech um ambiente ainda mais acolhedor e fu
 1. Clone o repositório:
 
    ```
-   https://github.com/YaraDanieleUchoa/Final_Project_Blog
+   https://github.com/Dayanaferrer/caneca-tech-blog
    ```
 
 2. Navegue até o diretório do projeto:
